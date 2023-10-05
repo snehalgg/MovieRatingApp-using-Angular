@@ -1,0 +1,20 @@
+<div class="movie-container">
+  <div *ngFor="let movie of movies" class="movie-card">
+    <h3>{{ movie.title }}</h3>
+    <a [routerLink]="'/comments/' + movie.id">
+    <img [src]="movie.image" alt="{{ movie.title }}" (click)="rateMovie(movie, selectedRating)"></a>
+    <br>
+    <div *ngIf="movie.rating > 0" class="rating">Rating: {{ movie.rating.toFixed(2) }} stars <br> (Rated by {{ movie.totalRatings }} people)</div>
+
+    <div class="selected-rating" *ngIf="selectedRating > 0">
+      Selected Rating: {{ selectedRating }} stars
+    </div>
+
+    <app-rating
+      [maxRating]="5"
+      [currentRating]="movie.rating"
+      (ratingClicked)="rateMovie(movie, $event)">
+    </app-rating>
+  
+  </div>
+</div>

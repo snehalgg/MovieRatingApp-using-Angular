@@ -1,0 +1,5 @@
+<span *ngFor="let _ of getRange(); let i = index" class="star"
+  [ngClass]="{'filled': i < currentRating }"
+  (click)="ratingClickedHandler(i + 1)">
+  ★
+</span>
